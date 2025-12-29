@@ -21,18 +21,23 @@ export default function Home() {
       </section>
 
       <section>
-        <h2 className="font-sans text-xl font-semibold tracking-tight mb-8">
+        <h2 className="font-sans text-sm font-medium tracking-wide uppercase text-muted mb-6">
           Recent Writing
         </h2>
-        <div className="space-y-8">
+        <div className="space-y-1">
           {recentPosts.map((post) => (
             <article key={post.slug}>
-              <Link href={`/blog/${post.slug}`} className="group block">
-                <time className="text-sm text-muted">{post.date}</time>
-                <h3 className="font-sans text-lg font-medium mt-1 group-hover:text-accent transition-colors">
-                  {post.title}
-                </h3>
-                <p className="text-muted mt-2 leading-relaxed">
+              <Link
+                href={`/blog/${post.slug}`}
+                className="group block -mx-4 px-4 py-4 rounded-lg hover:bg-border/30 transition-colors"
+              >
+                <div className="flex items-baseline justify-between gap-4">
+                  <h3 className="font-serif text-lg font-medium group-hover:text-accent transition-colors">
+                    {post.title}
+                  </h3>
+                  <time className="text-sm text-muted shrink-0">{post.date}</time>
+                </div>
+                <p className="text-muted mt-1.5 text-[0.95rem] leading-relaxed">
                   {post.excerpt}
                 </p>
               </Link>
@@ -41,7 +46,7 @@ export default function Home() {
         </div>
         <Link
           href="/blog"
-          className="inline-block mt-10 font-sans text-sm text-accent hover:underline"
+          className="inline-block mt-8 font-sans text-sm text-accent hover:underline"
         >
           View all posts &rarr;
         </Link>

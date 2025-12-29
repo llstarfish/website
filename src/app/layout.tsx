@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Crimson_Pro, Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const crimsonPro = Crimson_Pro({
   variable: "--font-crimson",
@@ -27,9 +28,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${crimsonPro.variable} ${inter.variable} antialiased`}>
+      <body className={`${crimsonPro.variable} ${inter.variable} antialiased min-h-screen flex flex-col`}>
         <Header />
-        <main className="min-h-screen">{children}</main>
+        <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );
