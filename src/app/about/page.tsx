@@ -18,8 +18,7 @@ export default function AboutPage() {
           Toronto, followed by a Master&apos;s in Statistics.
         </p>
         <p>
-          This site is where I write down my thoughts and thinking —
-          life, the world we live in, and what lies ahead.
+          This site is where I write down my thoughts and thinking.
         </p>
         <p>
           My interests sit at the intersection of technology, and
