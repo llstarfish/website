@@ -33,6 +33,20 @@ export default function AboutPage() {
           </p>
           <footer className="text-sm mt-2 not-italic">— George Bernard Shaw</footer>
         </blockquote>
+
+        <div className="mt-8">
+          <video
+            src="/penguin.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full rounded-lg"
+          />
+          <p className="text-xs text-muted mt-2">
+            Stolen from Poseidon Aerospace. Not affiliated.
+          </p>
+        </div>
       </div>
     </div>
   );
