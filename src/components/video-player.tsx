@@ -37,9 +37,9 @@ export function VideoPlayer({ src, className }: VideoPlayerProps): ReactElement 
         ref={videoRef}
         src={src}
         autoPlay
-        loop
         playsInline
         className={className}
+        onEnded={() => setIsPlaying(false)}
       />
       <div className="absolute bottom-3 right-3 flex gap-2">
         <button
