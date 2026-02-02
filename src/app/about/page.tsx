@@ -16,14 +16,23 @@ export default function AboutPage() {
           Toronto, followed by a Master&apos;s in Statistics.
         </p>
         <p>
-          This site is where I write down my thoughts and thinking — on life,
-          the world we live in, finance, AI, and what lies ahead.
+          This site is where I write down my thoughts and thinking —
+          life, the world we live in, and what lies ahead.
         </p>
         <p>
-          My interests sit at the intersection of technology, AI, blockchain, and
+          My interests sit at the intersection of technology, and
           finance. I spend a lot of time reading and thinking about how we got
           here and what&apos;s ahead.
         </p>
+
+        <blockquote className="border-l-2 border-muted pl-4 italic text-muted">
+          <p>
+            &ldquo;The reasonable man adapts himself to the world; the
+            unreasonable one persists in trying to adapt the world to himself.
+            Therefore all progress depends on the unreasonable man.&rdquo;
+          </p>
+          <footer className="text-sm mt-2 not-italic">— George Bernard Shaw</footer>
+        </blockquote>
       </div>
     </div>
   );

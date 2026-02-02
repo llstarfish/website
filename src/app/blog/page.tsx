@@ -28,7 +28,7 @@ export default function BlogPage() {
             <article key={post.slug} className="group">
               <Link href={`/blog/${post.slug}`} className="block">
                 <time className="text-sm text-muted">{post.date}</time>
-                <h2 className="font-sans text-xl font-medium mt-1 group-hover:text-accent transition-colors">
+                <h2 className="font-serif text-xl font-medium mt-1 group-hover:text-accent transition-colors">
                   {post.title}
                 </h2>
                 <p className="text-muted mt-2 leading-relaxed">{post.excerpt}</p>

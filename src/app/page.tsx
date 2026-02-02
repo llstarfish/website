@@ -16,7 +16,6 @@ export default function Home() {
         </div>
         <p className="text-lg text-muted leading-relaxed">
           A place where I straighten out my thoughts and write them down.
-          Life, the world we live in, AI, and what lies ahead.
         </p>
       </section>
 
