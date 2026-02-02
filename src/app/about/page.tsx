@@ -1,3 +1,5 @@
+import { VideoPlayer } from "@/components/video-player";
+
 export const metadata = {
   title: "About - Michael Shen",
   description: "About Michael Shen (沈浩祯)",
@@ -35,14 +37,7 @@ export default function AboutPage() {
         </blockquote>
 
         <div className="mt-8">
-          <video
-            src="/penguin.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full rounded-lg"
-          />
+          <VideoPlayer src="/penguin.mp4" className="w-full rounded-lg" />
           <p className="text-xs text-muted mt-2">
             Stolen from Poseidon Aerospace. Not affiliated.
           </p>
