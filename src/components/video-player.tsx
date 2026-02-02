@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { type ReactElement, useRef, useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 
 interface VideoPlayerProps {
@@ -8,7 +8,7 @@ interface VideoPlayerProps {
   className?: string;
 }
 
-export function VideoPlayer({ src, className }: VideoPlayerProps): JSX.Element {
+export function VideoPlayer({ src, className }: VideoPlayerProps): ReactElement {
   const [isMuted, setIsMuted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
