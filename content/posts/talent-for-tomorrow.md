@@ -61,13 +61,10 @@ The people who can delegate with precision—who can compress complex intent int
 ## What This Means
 
 We're entering an era where the ability to do is becoming commoditized, but the ability to judge and decide is becoming priceless.
-
 The engineers of tomorrow will spend less time writing code and more time evaluating it—distinguishing optimal solutions from merely functional ones, catching drift before it compounds, steering agents back on course with precision. The product leaders of tomorrow will spend less time managing backlogs and more time asking what belongs on the backlog at all—saying no to the noise, yes to the signal, operating as curators in an age of infinite build capacity.
-
 And the most effective people in both categories will be those who can delegate with such clarity that their intent survives translation through multiple layers of agents and turns. They'll understand that a 3% improvement in specification quality isn't marginal—it's the difference between 10x leverage and 10x chaos.
-
 The mathematics are unforgiving. As the number of agents scales and time horizons extend, small differences in judgment compound into vast differences in outcomes. Organizations will bifurcate: those who master evaluation, curation, and specification will move with unprecedented speed and precision. Those who don't will drown in their own output—spinning up agents, burning tokens, course-correcting endlessly, mistaking motion for progress.
 
-The talent for tomorrow isn't about execution anymore. It's about knowing what's right, knowing what matters, and communicating both with enough clarity to survive the exponential.
 
-Everything else is becoming table stakes.
+The talent for tomorrow isn't about execution anymore. It's about knowing what's right, knowing what matters, and communicating both with enough clarity to survive the exponential. In an age of infinite capacity, constraint becomes the skill.
+
