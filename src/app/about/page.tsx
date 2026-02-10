@@ -38,7 +38,7 @@ export default function AboutPage() {
         <div className="mt-8">
           <VideoPlayer src="/penguin.mp4" className="w-full rounded-lg" />
           <p className="text-xs text-muted mt-2">
-            Stolen from Poseidon Aerospace. Not affiliated.
+            Video borrowed from Poseidon Aerospace. Not affiliated.
           </p>
         </div>
       </div>
