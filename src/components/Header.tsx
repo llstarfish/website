@@ -23,6 +23,13 @@ export function Header() {
             </Link>
             <span className="text-border">/</span>
             <Link
+              href="/projects"
+              className="px-3 py-1.5 font-sans text-sm text-muted hover:text-foreground hover:bg-border/50 rounded transition-all"
+            >
+              Projects
+            </Link>
+            <span className="text-border">/</span>
+            <Link
               href="/about"
               className="px-3 py-1.5 font-sans text-sm text-muted hover:text-foreground hover:bg-border/50 rounded transition-all"
             >
