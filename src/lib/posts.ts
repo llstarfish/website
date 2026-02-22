@@ -5,8 +5,8 @@ import matter from "gray-matter";
 const postsDirectory = path.join(process.cwd(), "content/posts");
 
 function extractExcerpt(content: string, maxLength = 320): string {
-  // Remove any leading whitespace and find the first paragraph
-  const trimmed = content.trim();
+  // Normalize line endings and trim
+  const trimmed = content.replace(/\r\n/g, "\n").trim();
 
   // Split by double newlines to get paragraphs
   const paragraphs = trimmed.split(/\n\n+/);
@@ -78,8 +78,7 @@ export function getAllPosts(): Post[] {
       const fileContents = fs.readFileSync(fullPath, "utf8");
       const { data, content } = matter(fileContents);
 
-      // Auto-generate excerpt from the first paragraph of content
-      const excerpt = extractExcerpt(content);
+      const excerpt = data.excerpt || extractExcerpt(content);
 
       return {
         slug,

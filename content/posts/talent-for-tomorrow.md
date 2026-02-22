@@ -6,7 +6,7 @@ excerpt: "The workforce is undergoing a fundamental transformation. As AI agents
 
 The workforce is undergoing a fundamental transformation. As AI agents become capable of executing increasingly complex tasks, the skills that define valuable employees are shifting beneath our feet. The question is no longer who can build but who can judge and who can decide.
 
-We believe the majority of companies will soon organize around two primary talent archetypes, unified by a third critical capability.
+The majority of companies will soon organize around two primary talent archetypes, unified by a third critical capability.
 
 ## The Two Archetypes
 
@@ -14,7 +14,7 @@ We believe the majority of companies will soon organize around two primary talen
 
 The first archetype is what I call eval talent—people who can evaluate the correctness and quality of agent outputs with sophisticated judgment.
 
-This sounds deceptively simple. We're not talking about checking if an agent returned a 1 instead of a 0. We're talking about something far more nuanced: assessing whether an agent navigated a multi-turn, non-deterministic task well over a long horizon. Did it make the right tradeoffs? Did it follow best practices? Where did it stumble, and why?
+This sounds deceptively simple. It's not about checking if an agent returned a 1 instead of a 0. It's something far more nuanced: assessing whether an agent navigated a multi-turn, non-deterministic task well over a long horizon. Did it make the right tradeoffs? Did it follow best practices? Where did it stumble, and why?
 
 Consider code generation. An eval-talented engineer doesn't just verify that code compiles. They assess whether the solution is optimal, maintainable, scalable. They catch the agent when it drifts toward an anti-pattern. They recognize when a "working" solution is actually technical debt in disguise.
 
@@ -60,11 +60,13 @@ The people who can delegate with precision—who can compress complex intent int
 
 ## What This Means
 
-We're entering an era where the ability to do is becoming commoditized, but the ability to judge and decide is becoming priceless.
-The engineers of tomorrow will spend less time writing code and more time evaluating it—distinguishing optimal solutions from merely functional ones, catching drift before it compounds, steering agents back on course with precision. The product leaders of tomorrow will spend less time managing backlogs and more time asking what belongs on the backlog at all—saying no to the noise, yes to the signal, operating as curators in an age of infinite build capacity.
-And the most effective people in both categories will be those who can delegate with such clarity that their intent survives translation through multiple layers of agents and turns. They'll understand that a 3% improvement in specification quality isn't marginal—it's the difference between 10x leverage and 10x chaos.
-The mathematics are unforgiving. As the number of agents scales and time horizons extend, small differences in judgment compound into vast differences in outcomes. Organizations will bifurcate: those who master evaluation, curation, and specification will move with unprecedented speed and precision. Those who don't will drown in their own output—spinning up agents, burning tokens, course-correcting endlessly, mistaking motion for progress.
+This is an era where the ability to do is becoming commoditized, but the ability to judge and decide is becoming priceless.
 
+The engineers of tomorrow will spend less time writing code and more time evaluating it—distinguishing optimal solutions from merely functional ones, catching drift before it compounds, steering agents back on course with precision. The product leaders of tomorrow will spend less time managing backlogs and more time asking what belongs on the backlog at all—saying no to the noise, yes to the signal, operating as curators in an age of infinite build capacity.
+
+And the most effective people in both categories will be those who can delegate with such clarity that their intent survives translation through multiple layers of agents and turns. They'll understand that a 3% improvement in specification quality isn't marginal—it's the difference between 10x leverage and 10x chaos.
+
+The mathematics are unforgiving. As the number of agents scales and time horizons extend, small differences in judgment compound into vast differences in outcomes. Organizations will bifurcate: those who master evaluation, curation, and specification will move with unprecedented speed and precision. Those who don't will drown in their own output—spinning up agents, burning tokens, course-correcting endlessly, mistaking motion for progress.
 
 The talent for tomorrow isn't about execution anymore. It's about knowing what's right, knowing what matters, and communicating both with enough clarity to survive the exponential. In an age of infinite capacity, constraint becomes the skill.
 
