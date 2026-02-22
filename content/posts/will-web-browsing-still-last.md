@@ -1,6 +1,7 @@
 ---
 title: "Will Web Browsing Still Last?"
 date: "2026-02-02"
+excerpt: "Humans are visual animals, wired for survival through pattern recognition. The web was built on that instinct. But when agents become the primary users of digital services, what happens to the interface?"
 ---
 
 ## Affordances for Flesh and Blood

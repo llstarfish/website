@@ -1,7 +1,7 @@
 ---
 title: "AI and Pareto"
 date: "2025-12-29"
-excerpt: "At the end of the nineteenth century, Vilfredo Pareto noticed a stubborn pattern in the data."
+excerpt: "At the end of the nineteenth century, Vilfredo Pareto noticed a stubborn pattern in the data. Wealth did not distribute evenly. The asymmetry didn't change. And for a remarkably long time, the curve held."
 ---
 
 At the end of the nineteenth century, Vilfredo Pareto noticed a stubborn pattern in the data.
