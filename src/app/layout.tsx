@@ -3,6 +3,7 @@ import { Crimson_Pro, Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import Footer from "@/components/Footer";
+import { BackgroundProvider } from "@/components/background-provider";
 
 const crimsonPro = Crimson_Pro({
   variable: "--font-crimson",
@@ -27,11 +28,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${crimsonPro.variable} ${inter.variable} antialiased min-h-screen flex flex-col`}>
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <BackgroundProvider>
+          <Header />
+          <main className="flex-1 pb-16 sm:pb-0">{children}</main>
+          <Footer />
+        </BackgroundProvider>
       </body>
     </html>
   );

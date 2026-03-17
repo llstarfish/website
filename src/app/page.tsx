@@ -15,7 +15,7 @@ export default function Home() {
           <p className="text-sm text-muted mt-1">沈浩祯 · Haozhen Shen</p>
         </div>
         <p className="text-lg text-muted leading-relaxed">
-          A place where I straighten out my thoughts and write them down.
+          Thoughts, sorted.
         </p>
       </section>
 
@@ -28,9 +28,9 @@ export default function Home() {
             <article key={post.slug}>
               <Link
                 href={`/blog/${post.slug}`}
-                className="group block -mx-4 px-4 py-4 rounded-lg hover:bg-border/30 transition-colors"
+                className="group block -mx-4 px-4 py-4"
               >
-                <div className="flex items-baseline justify-between gap-4">
+                <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4">
                   <h3 className="font-serif text-lg font-medium group-hover:text-accent transition-colors">
                     {post.title}
                   </h3>

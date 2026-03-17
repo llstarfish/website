@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { ExternalLink, Github } from "lucide-react";
 import { getAllProjects } from "@/lib/projects";
 
 export const metadata = {
@@ -21,11 +20,9 @@ export default function ProjectsPage(): React.ReactElement {
         <p className="text-muted">No projects yet.</p>
       ) : (
         <div className="space-y-1">
-          {projects.map((project) => (
-            <article
-              key={project.slug}
-              className="group -mx-4 px-4 py-5 rounded-lg hover:bg-border/30 transition-colors"
-            >
+          {projects.map((project) => {
+            const href = project.url || project.repo;
+            const Card = (
               <div className="flex gap-4">
                 {project.image && (
                   <div className="shrink-0 mt-0.5">
@@ -58,37 +55,29 @@ export default function ProjectsPage(): React.ReactElement {
                       ))}
                     </div>
                   )}
-
-                  {(project.url || project.repo) && (
-                    <div className="flex items-center gap-4 mt-3">
-                      {project.url && (
-                        <a
-                          href={project.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 font-sans text-sm text-accent hover:underline"
-                        >
-                          <ExternalLink size={14} />
-                          Live
-                        </a>
-                      )}
-                      {project.repo && (
-                        <a
-                          href={project.repo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 font-sans text-sm text-accent hover:underline"
-                        >
-                          <Github size={14} />
-                          Source
-                        </a>
-                      )}
-                    </div>
-                  )}
                 </div>
               </div>
-            </article>
-          ))}
+            );
+
+            return href ? (
+              <a
+                key={project.slug}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block -mx-4 px-4 py-5 no-underline"
+              >
+                {Card}
+              </a>
+            ) : (
+              <article
+                key={project.slug}
+                className="group -mx-4 px-4 py-5"
+              >
+                {Card}
+              </article>
+            );
+          })}
         </div>
       )}
     </div>
