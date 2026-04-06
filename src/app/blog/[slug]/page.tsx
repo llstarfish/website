@@ -89,7 +89,11 @@ export default async function PostPage({ params }: PageProps) {
         >
           &larr; Back to blog
         </Link>
-        <time className="block text-sm text-muted">{post.date}</time>
+        <div className="flex items-center gap-2 text-sm text-muted">
+          <time>{post.date}</time>
+          <span aria-hidden="true">·</span>
+          <span>{post.readTimeMinutes} min read</span>
+        </div>
         <h1 className="font-serif text-3xl sm:text-4xl font-semibold tracking-tight mt-2 leading-tight">
           {post.title}
         </h1>

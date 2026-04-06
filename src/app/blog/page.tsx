@@ -27,7 +27,11 @@ export default function BlogPage() {
           {posts.map((post) => (
             <article key={post.slug} className="group">
               <Link href={`/blog/${post.slug}`} className="block">
-                <time className="text-sm text-muted">{post.date}</time>
+                <div className="flex items-center gap-2 text-sm text-muted">
+                  <time>{post.date}</time>
+                  <span aria-hidden="true">·</span>
+                  <span>{post.readTimeMinutes} min read</span>
+                </div>
                 <h2 className="font-serif text-xl font-medium mt-1 group-hover:text-accent transition-colors">
                   {post.title}
                 </h2>

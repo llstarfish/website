@@ -9,7 +9,6 @@ const VIEWED_KEY = "about-video-viewed";
 export function AboutContent() {
   const { setShowBackground } = useBackground();
   const [hasViewed, setHasViewed] = useState<boolean | null>(null);
-  const [videoEnded, setVideoEnded] = useState(false);
   const [showQuote, setShowQuote] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
   const [visibleLines, setVisibleLines] = useState(0);
@@ -23,7 +22,6 @@ export function AboutContent() {
       setShowAbout(true);
       setVisibleLines(4);
       setLightsOn(true);
-      setVideoEnded(true);
       setShowBackground(true);
     }
   }, [setShowBackground]);
@@ -33,7 +31,6 @@ export function AboutContent() {
   }
 
   function handleVideoEnded() {
-    setVideoEnded(true);
     setTimeout(() => {
       setShowAbout(true);
       let line = 1;

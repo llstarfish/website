@@ -3,6 +3,32 @@ import path from "path";
 import matter from "gray-matter";
 
 const postsDirectory = path.join(process.cwd(), "content/posts");
+const WORDS_PER_MINUTE = 200;
+
+function stripMarkdown(content: string): string {
+  return content
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/`[^`]*`/g, " ")
+    .replace(/!\[([^\]]*)\]\([^)]+\)/g, " $1 ")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, " $1 ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/^#{1,6}\s+/gm, "")
+    .replace(/^>\s?/gm, "")
+    .replace(/^\s*[-*+]\s+/gm, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function getReadTimeMinutes(content: string): number {
+  const plainText = stripMarkdown(content);
+
+  if (!plainText) {
+    return 1;
+  }
+
+  const wordCount = plainText.split(/\s+/).length;
+  return Math.max(1, Math.ceil(wordCount / WORDS_PER_MINUTE));
+}
 
 function extractExcerpt(content: string, maxLength = 320): string {
   // Normalize line endings and trim
@@ -62,6 +88,7 @@ export interface Post {
   date: string;
   excerpt: string;
   content: string;
+  readTimeMinutes: number;
 }
 
 export function getAllPosts(): Post[] {
@@ -79,6 +106,7 @@ export function getAllPosts(): Post[] {
       const { data, content } = matter(fileContents);
 
       const excerpt = data.excerpt || extractExcerpt(content);
+      const readTimeMinutes = getReadTimeMinutes(content);
 
       return {
         slug,
@@ -86,6 +114,7 @@ export function getAllPosts(): Post[] {
         date: data.date || "",
         excerpt,
         content,
+        readTimeMinutes,
       };
     })
     .sort((a, b) => (a.date > b.date ? -1 : 1));
@@ -109,5 +138,6 @@ export function getPostBySlug(slug: string): Post | null {
     date: data.date || "",
     excerpt: extractExcerpt(content),
     content,
+    readTimeMinutes: getReadTimeMinutes(content),
   };
 }

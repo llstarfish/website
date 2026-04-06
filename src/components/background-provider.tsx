@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
 const BackgroundContext = createContext<{
   showBackground: boolean;
@@ -16,6 +16,12 @@ export function useBackground() {
 
 export function BackgroundProvider({ children }: { children: ReactNode }) {
   const [showBackground, setShowBackground] = useState(false);
+
+  // Preload background image so it's ready when needed (e.g. after video ends)
+  useEffect(() => {
+    const img = new Image();
+    img.src = "/background.png";
+  }, []);
 
   return (
     <BackgroundContext.Provider value={{ showBackground, setShowBackground }}>

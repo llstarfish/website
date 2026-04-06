@@ -11,30 +11,57 @@ interface VideoPlayerProps {
 }
 
 function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+
+    return window.innerWidth < 640;
+  });
+
   useEffect(() => {
-    setIsMobile(window.innerWidth < 640);
+    const mediaQuery = window.matchMedia("(max-width: 639px)");
+    const handleChange = (event: MediaQueryListEvent) => {
+      setIsMobile(event.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange);
+    };
   }, []);
+
   return isMobile;
 }
 
 export function VideoPlayer({ src, className, onEnded, onFadeStart }: VideoPlayerProps): ReactElement {
   const isMobile = useIsMobile();
-  const [isMuted, setIsMuted] = useState(true); // start muted so autoplay works on mobile
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [hasStarted, setHasStarted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(1);
-  const [showUnmuteHint, setShowUnmuteHint] = useState(true);
+  const [showUnmuteHint, setShowUnmuteHint] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const fadeStartFired = useRef(false);
 
-  // Unmute on desktop after mount (autoplay with sound works on desktop)
-  useEffect(() => {
-    if (!isMobile && videoRef.current) {
-      videoRef.current.muted = false;
-      setIsMuted(false);
-      setShowUnmuteHint(false);
+  function handleStart(): void {
+    if (videoRef.current) {
+      if (isMobile) {
+        // Mobile: start muted, show unmute hint
+        videoRef.current.muted = true;
+        setIsMuted(true);
+        setShowUnmuteHint(true);
+      } else {
+        // Desktop: start with sound
+        videoRef.current.muted = false;
+        setIsMuted(false);
+      }
+      videoRef.current.play();
+      setHasStarted(true);
+      setIsPlaying(true);
     }
-  }, [isMobile]);
+  }
 
   function handleUnmute(): void {
     if (videoRef.current) {
@@ -103,16 +130,28 @@ export function VideoPlayer({ src, className, onEnded, onFadeStart }: VideoPlaye
       <video
         ref={videoRef}
         src={src}
-        autoPlay
-        muted
+        preload="metadata"
         playsInline
         className={className}
         onTimeUpdate={handleTimeUpdate}
         onEnded={handleEnded}
       />
 
+      {/* Start button overlay */}
+      {!hasStarted && (
+        <button
+          onClick={handleStart}
+          className="absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity cursor-pointer"
+          aria-label="Play video"
+        >
+          <span className="flex items-center justify-center w-16 h-16 rounded-full bg-white/90 hover:bg-white text-black transition-colors">
+            <Play size={28} className="ml-1" />
+          </span>
+        </button>
+      )}
+
       {/* Mobile: tap to unmute overlay */}
-      {isMobile && showUnmuteHint && isPlaying && (
+      {hasStarted && isMobile && showUnmuteHint && isPlaying && (
         <button
           onClick={handleUnmute}
           className="absolute inset-0 flex items-center justify-center bg-black/20 transition-opacity"
@@ -126,7 +165,7 @@ export function VideoPlayer({ src, className, onEnded, onFadeStart }: VideoPlaye
       )}
 
       {/* Controls */}
-      <div className="absolute bottom-3 right-3 flex gap-2">
+      <div className={`absolute bottom-3 right-3 flex gap-2 transition-opacity ${hasStarted ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
         <button
           onClick={togglePlayPause}
           className="p-2 rounded-full bg-black/50 hover:bg-black/70 text-white transition-colors"
