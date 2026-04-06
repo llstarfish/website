@@ -44,9 +44,16 @@ export default function ProjectsPage(): React.ReactElement {
                     {project.description}
                   </p>
                   {project.tags.length > 0 && (
-                    <p className="font-sans text-[0.72rem] uppercase tracking-[0.16em] text-muted mt-2">
-                      {project.tags.join(" · ")}
-                    </p>
+                    <div className="flex flex-wrap gap-2 mt-2.5">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="font-sans text-xs text-muted px-2.5 py-1 rounded-full border border-border bg-background/70"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   )}
                 </div>
               </div>
