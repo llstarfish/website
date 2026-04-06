@@ -36,10 +36,10 @@ export function Header() {
                   {i > 0 && <span className="text-border">/</span>}
                   <Link
                     href={link.href}
-                    className={`px-3 py-1.5 font-sans text-sm rounded transition-all ${
+                    className={`px-1 py-1 font-sans text-sm transition-colors ${
                       pathname.startsWith(link.href)
                         ? "text-foreground"
-                        : "text-muted hover:text-foreground hover:bg-border/50"
+                        : "text-muted hover:text-foreground"
                     }`}
                   >
                     {link.label}

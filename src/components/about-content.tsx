@@ -6,50 +6,56 @@ import { useBackground } from "@/components/background-provider";
 
 const VIEWED_KEY = "about-video-viewed";
 
+function getInitialViewedState(): boolean {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  return localStorage.getItem(VIEWED_KEY) === "true";
+}
+
 export function AboutContent() {
   const { setShowBackground } = useBackground();
-  const [hasViewed, setHasViewed] = useState<boolean | null>(null);
-  const [showQuote, setShowQuote] = useState(false);
-  const [showAbout, setShowAbout] = useState(false);
-  const [visibleLines, setVisibleLines] = useState(0);
-  const [lightsOn, setLightsOn] = useState(false);
+  const [hasViewed] = useState(getInitialViewedState);
+  const [showQuote, setShowQuote] = useState(hasViewed);
+  const [showAbout, setShowAbout] = useState(hasViewed);
+  const [visibleLines, setVisibleLines] = useState(hasViewed ? 4 : 0);
+  const [lightsOn, setLightsOn] = useState(hasViewed);
 
   useEffect(() => {
-    const viewed = localStorage.getItem(VIEWED_KEY) === "true";
-    setHasViewed(viewed);
-    if (viewed) {
+    if (hasViewed) {
       setShowQuote(true);
       setShowAbout(true);
       setVisibleLines(4);
       setLightsOn(true);
       setShowBackground(true);
     }
-  }, [setShowBackground]);
+
+    return () => {
+      setShowBackground(false);
+    };
+  }, [hasViewed, setShowBackground]);
 
   function handleFadeStart() {
     setShowQuote(true);
   }
 
   function handleVideoEnded() {
-    setTimeout(() => {
-      setShowAbout(true);
-      let line = 1;
-      const interval = setInterval(() => {
-        setVisibleLines(line);
-        if (line === 4) {
-          clearInterval(interval);
-          setTimeout(() => {
-            setLightsOn(true);
-            setShowBackground(true);
-            localStorage.setItem(VIEWED_KEY, "true");
-          }, 3000);
-        }
-        line++;
-      }, 600);
+    setShowAbout(true);
+    let line = 1;
+    const interval = setInterval(() => {
+      setVisibleLines(line);
+      if (line === 4) {
+        clearInterval(interval);
+        setTimeout(() => {
+          setLightsOn(true);
+          setShowBackground(true);
+          localStorage.setItem(VIEWED_KEY, "true");
+        }, 2200);
+      }
+      line++;
     }, 500);
   }
-
-  if (hasViewed === null) return null;
 
   const quoteColor = lightsOn ? "text-muted" : "text-neutral-400";
   const attributionColor = lightsOn ? "text-muted" : "text-neutral-500";
@@ -63,21 +69,15 @@ export function AboutContent() {
     <>
       {/* Dimmed backdrop */}
       <div
-        className={`fixed inset-0 z-40 bg-black/80 transition-opacity duration-1000 ${
+        className={`fixed inset-0 z-40 bg-black/80 transition-opacity duration-[1800ms] ${
           lightsOn ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       />
 
-      {/* Scrollable content layer */}
-      <div
-        className={`fixed inset-0 z-50 overflow-y-auto ${
-          lightsOn ? "pointer-events-none" : ""
-        }`}
-      >
-        <div className="min-h-full flex flex-col items-center justify-center px-6 py-8 pb-24 sm:py-12 sm:pb-12">
-          {/* Quote */}
+      <div className="relative z-50">
+        <div className="mx-auto max-w-2xl px-6 py-16">
           <div
-            className={`mb-10 sm:mb-10 text-center max-w-xl transition-opacity duration-[2000ms] ${
+            className={`mb-12 text-center max-w-xl mx-auto transition-opacity duration-[2000ms] ${
               showQuote ? "opacity-100" : "opacity-0"
             }`}
           >
@@ -100,11 +100,11 @@ export function AboutContent() {
             </blockquote>
           </div>
 
-          {/* Video */}
-          <div className="w-full max-w-2xl pointer-events-auto">
+          <div className="w-full mb-12">
             <VideoPlayer
               src="/penguin.mp4"
               className="w-full"
+              aspectRatio="2880 / 2160"
               onFadeStart={handleFadeStart}
               onEnded={handleVideoEnded}
             />
@@ -113,9 +113,8 @@ export function AboutContent() {
             </p>
           </div>
 
-          {/* About — staggered reveal */}
           <div
-            className={`mt-10 sm:mt-10 w-full max-w-2xl text-left transition-opacity duration-500 ${
+            className={`w-full text-left transition-opacity duration-500 ${
               showAbout ? "opacity-100" : "opacity-0"
             }`}
           >

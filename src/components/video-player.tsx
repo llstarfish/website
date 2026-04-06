@@ -6,6 +6,7 @@ import { Pause, Play, Volume2, VolumeX } from "lucide-react";
 interface VideoPlayerProps {
   src: string;
   className?: string;
+  aspectRatio?: string;
   onEnded?: () => void;
   onFadeStart?: () => void;
 }
@@ -35,7 +36,13 @@ function useIsMobile() {
   return isMobile;
 }
 
-export function VideoPlayer({ src, className, onEnded, onFadeStart }: VideoPlayerProps): ReactElement {
+export function VideoPlayer({
+  src,
+  className,
+  aspectRatio,
+  onEnded,
+  onFadeStart,
+}: VideoPlayerProps): ReactElement {
   const isMobile = useIsMobile();
   const [hasStarted, setHasStarted] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
@@ -126,13 +133,16 @@ export function VideoPlayer({ src, className, onEnded, onFadeStart }: VideoPlaye
   }
 
   return (
-    <div className="relative rounded-lg overflow-hidden">
+    <div
+      className={`relative overflow-hidden rounded-lg bg-black ${className ?? ""}`}
+      style={aspectRatio ? { aspectRatio } : undefined}
+    >
       <video
         ref={videoRef}
         src={src}
         preload="metadata"
         playsInline
-        className={className}
+        className="h-full w-full"
         onTimeUpdate={handleTimeUpdate}
         onEnded={handleEnded}
       />

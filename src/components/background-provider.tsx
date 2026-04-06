@@ -26,24 +26,24 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
   return (
     <BackgroundContext.Provider value={{ showBackground, setShowBackground }}>
       {showBackground && (
-        <div
-          className="fixed inset-0 -z-10 animate-fade-in"
-          style={{
-            backgroundImage: "url(/background.png)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
+        <>
+          <div
+            className="fixed inset-0 z-0 animate-fade-in pointer-events-none"
+            style={{
+              backgroundImage: "url(/background.png)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+
+          <div
+            className="fixed inset-0 z-0 animate-fade-in pointer-events-none"
+            style={{ backgroundColor: "rgba(248, 244, 236, 0.85)" }}
+          />
+        </>
       )}
 
-      {showBackground && (
-        <div
-          className="fixed inset-0 -z-[5] animate-fade-in"
-          style={{ backgroundColor: "rgba(248, 244, 236, 0.85)" }}
-        />
-      )}
-
-      {children}
+      <div className="relative z-10">{children}</div>
     </BackgroundContext.Provider>
   );
 }
